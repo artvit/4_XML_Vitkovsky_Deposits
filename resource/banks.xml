@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<Banks xmlns="banks">
+    <deposit id="a2" country="BY">
+        <bank>Prior</bank>
+        <depositor>
+            <firstName>Artem</firstName>
+            <lastName>Vitkovsky</lastName>
+        </depositor>
+        <type>metal</type>
+        <metalAmount metal="gold">200</metalAmount>
+        <profitability>5%</profitability>
+        <time>2016-08-02</time>
+    </deposit>
+    <deposit id="b4e">
+        <bank>Prior</bank>
+        <depositor>
+            <firstName>Artem</firstName>
+            <lastName>Vitkovsky</lastName>
+        </depositor>
+        <type>checking</type>
+        <currencyAmount currency="BYR">50000</currencyAmount>
+        <profitability>10.6%</profitability>
+        <time>2016-12-14</time>
+    </deposit>
+    <deposit country="RU" id="a234a">
+        <bank>Prior</bank>
+        <depositor>
+            <firstName>Artem</firstName>
+            <lastName>Vitkovsky</lastName>
+        </depositor>
+        <type>checking</type>
+        <currencyAmount currency="USD">300</currencyAmount>
+        <profitability>0.2%</profitability>
+        <time>2016-08-30</time>
+    </deposit>
+</Banks>

@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<schema xmlns="http://www.w3.org/2001/XMLSchema"
+        targetNamespace="banks"
+        xmlns:tns="banks"
+        elementFormDefault="qualified">
+    <element name="amount" type="tns:amount" abstract="true"/>
+    <element name="currencyAmount" type="tns:currencyAmount" substitutionGroup="tns:amount"/>
+    <element name="metalAmount" type="tns:metalAmount" substitutionGroup="tns:amount"/>
+    <element name="Banks">
+        <complexType>
+            <sequence>
+                <element name="deposit" type="tns:deposit" minOccurs="1" maxOccurs="unbounded"/>
+            </sequence>
+        </complexType>
+    </element>
+    <complexType name="deposit">
+        <all>
+            <element name="bank" type="string" minOccurs="1" maxOccurs="1"/>
+            <element name="depositor" type="tns:depositorFirstName" minOccurs="1" maxOccurs="1"/>
+            <element name="type" type="tns:depositType" minOccurs="1" maxOccurs="1"/>
+            <element ref="tns:amount" minOccurs="1" maxOccurs="1"/>
+            <element name="profitability" type="tns:profitability" minOccurs="1" maxOccurs="1"/>
+            <element name="time" type="date" minOccurs="1" maxOccurs="1"/>
+        </all>
+        <attribute name="id" type="ID" use="required"/>
+        <attribute name="country" type="string" use="optional" default="BY"/>
+    </complexType>
+    <complexType name="depositorFirstName">
+        <all>
+            <element name="firstName" type="string" minOccurs="1" maxOccurs="1"/>
+            <element name="lastName" type="string" minOccurs="1" maxOccurs="1"/>
+        </all>
+    </complexType>
+    <simpleType name="profitability">
+        <restriction base="string">
+            <pattern value="(0*\d+(\.\d+)?)%"/>
+        </restriction>
+    </simpleType>
+    <simpleType name="amount">
+        <restriction base="decimal">
+            <minInclusive value="0"/>
+        </restriction>
+    </simpleType>
+    <complexType name="metalAmount">
+        <simpleContent>
+            <extension base="tns:amount">
+                <attribute name="metal" type="string" use="required"/>
+            </extension>
+        </simpleContent>
+    </complexType>
+    <complexType name="currencyAmount">
+        <simpleContent>
+            <extension base="tns:amount">
+                <attribute name="currency" type="string" use="required"/>
+            </extension>
+        </simpleContent>
+    </complexType>
+    <simpleType name="depositType">
+        <restriction base="string"><enumeration value="demand"/>
+            <enumeration value="time"/>
+            <enumeration value="checking"/>
+            <enumeration value="accumulation"/>
+            <enumeration value="savings"/>
+            <enumeration value="metal"/>
+
+        </restriction>
+    </simpleType>
+</schema>
